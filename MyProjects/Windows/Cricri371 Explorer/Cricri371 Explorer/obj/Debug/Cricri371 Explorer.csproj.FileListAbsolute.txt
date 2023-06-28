@@ -1,0 +1,29 @@
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\ResolveAssemblyReference.cache
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.MainForm.resources
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.OccupationForm.resources
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.RenameForm.resources
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.CreateForm.resources
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.csproj.GenerateResource.Cache
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371 Explorer.exe
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371 Explorer.pdb
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371Dll.dll
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371Dll.pdb
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\fr\Cricri371Dll.resources.dll
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.exe
+C:\svn_repository\Projets\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.pdb
+C:\Repositories\cricri371\trunk\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.exe
+C:\Repositories\cricri371\trunk\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.pdb
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371 Explorer.exe
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371 Explorer.pdb
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\Cricri371Dll.pdb
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\bin\Debug\fr\Cricri371Dll.resources.dll
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.csprojAssemblyReference.cache
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.MainForm.resources
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.OccupationForm.resources
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.RenameForm.resources
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371_Explorer.CreateForm.resources
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.csproj.GenerateResource.cache
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.csproj.CoreCompileInputs.cache
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.csproj.CopyComplete
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.exe
+C:\Svn\cricri371\old\OldSvn\Cricri371 Explorer\Cricri371 Explorer\obj\Debug\Cricri371 Explorer.pdb

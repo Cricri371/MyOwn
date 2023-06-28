@@ -1,0 +1,30 @@
+﻿<Window x:Class="Cricri371.Time.Manager.Views.ConfigurationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        DataContext="{Binding ConfigurationViewModel, Source={StaticResource Locator}}" ShowInTaskbar="False" d:DesignHeight="155" d:DesignWidth="328" Title="Configuration" WindowStyle="ToolWindow" Height="136" Width="328" MinHeight="136" MinWidth="328" ResizeMode="NoResize" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Grid Margin="0,5,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <CheckBox Content="Auto close at midnight" Grid.Row="0" HorizontalAlignment="Center" Grid.ColumnSpan="2" IsChecked="{Binding Path=AutoCloseMidnight}" TabIndex="0" />
+        <CheckBox Content="Auto close previous taks" HorizontalAlignment="Center" Grid.Row="1" Grid.ColumnSpan="2" IsChecked="{Binding Path=AutoClosePrevious}" TabIndex="1" />
+        <CheckBox Content="Multi taks" HorizontalAlignment="Center" Grid.Row="2" Grid.ColumnSpan="2" IsChecked="{Binding Path=MultiTask}" TabIndex="2" />
+        <CheckBox Content="Close all the tasks on exit" HorizontalAlignment="Center" Grid.Row="3" Grid.ColumnSpan="2" IsChecked="{Binding Path=CloseOnExit}" TabIndex="3" />
+
+        <Button Content="Ok" Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" IsDefault="True" TabIndex="4" Command="{Binding Path=SaveConfigurationCommand}" />
+        <Button Content="Cancel" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" IsCancel="True" TabIndex="5" />
+    </Grid>
+</Window>

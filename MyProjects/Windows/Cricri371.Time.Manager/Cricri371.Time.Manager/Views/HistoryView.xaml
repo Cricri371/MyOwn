@@ -1,0 +1,238 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Cricri371.Time.Manager.Classes"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" xmlns:ViewModel="clr-namespace:Cricri371.Time.Manager.ViewModel" x:Class="Cricri371.Time.Manager.Views.HistoryView"
+        mc:Ignorable="d"
+        Title="History" ShowInTaskbar="False" Height="600" Width="800" MinHeight="600" MinWidth="800" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Window.Resources>
+        <local:SumTimeConverter x:Key="SumTimeConverter" />
+
+        <Style TargetType="{x:Type DataGrid}">
+            <Setter Property="RowBackground" Value="#badeee" />
+            <Setter Property="AlternationCount" Value="2" />
+            <Setter Property="AlternatingRowBackground" Value="#92cce5" />
+        </Style>
+
+        <Style TargetType="{x:Type DataGridCell}">
+            <Style.Triggers>
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="Foreground" Value="Black" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style TargetType="{x:Type DataGridRow}">
+            <Style.Triggers>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                    <Setter Property="Background" Value="#badeee" />
+                    <Setter Property="BorderBrush" Value="#badeee" />
+                </Trigger>
+                <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                    <Setter Property="Background" Value="#92cce5" />
+                    <Setter Property="BorderBrush" Value="#92cce5" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <ViewModel:HistoryViewModel />
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Filters" Grid.Row="0" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Header="Period" Grid.Column="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Begin date :" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="5" />
+                        <DatePicker VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" SelectedDate="{Binding BeginDateFilter}" />
+                        <TextBlock Text="End date :" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="5" />
+                        <DatePicker VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding EndDateFilter}" />
+                        <CheckBox Content="Same day for the end date" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" IsChecked="{Binding EndDateEqualsToBeginDate}" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Companies/Applications/Projects/Tasks" Grid.Column="1">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Text="Companies :" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Margin="5" />
+                        <ComboBox ItemsSource="{Binding CommonViewModel.CompanyList, Source={StaticResource Locator}}" DisplayMemberPath="Name" Grid.Row="0" Grid.Column="1" Margin="5" SelectedItem="{Binding SelectedCompanyFilter}" SelectedIndex="{Binding SelectedCompanyIndexFilter}" />
+                        <TextBlock Text="Applications :" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Margin="5" />
+                        <ComboBox ItemsSource="{Binding CommonViewModel.ApplicationList, Source={StaticResource Locator}}" DisplayMemberPath="Name" Grid.Row="1" Grid.Column="1" Margin="5" SelectedItem="{Binding SelectedApplicationFilter}" SelectedIndex="{Binding SelectedApplicationIndexFilter}" />
+                        <TextBlock Text="Projects :" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Margin="5" />
+                        <ComboBox ItemsSource="{Binding CommonViewModel.ProjectList, Source={StaticResource Locator}}" DisplayMemberPath="ApplicationProjectShortName" Grid.Row="2" Grid.Column="1" Margin="5" SelectedIndex="{Binding SelectedProjectIndexFilter}" SelectedItem="{Binding SelectedProjectFilter}" />
+                        <TextBlock Text="Tasks :" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" Margin="5" />
+                        <ComboBox ItemsSource="{Binding CommonViewModel.TaskList, Source={StaticResource Locator}}" DisplayMemberPath="Name" Grid.Row="3" Grid.Column="1" Margin="5" SelectedIndex="{Binding SelectedTaskIndexFilter}" SelectedItem="{Binding SelectedTaskFilter}" />
+                    </Grid>
+                </GroupBox>
+
+                <GroupBox Header="Group" Grid.Column="2">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+
+                        <CheckBox Content="Group by application" VerticalAlignment="Center" Grid.Row="0" Margin="5" IsChecked="{Binding GroupByApplication}" />
+                        <CheckBox Content="Group by day" VerticalAlignment="Center" Grid.Row="1" Margin="5" IsChecked="{Binding GroupByDay}" />
+                        <CheckBox Content="Group by task" VerticalAlignment="Center" Grid.Row="2" Margin="5" IsChecked="{Binding GroupByTask}" />
+                        <CheckBox Content="Group by project" VerticalAlignment="Center" Grid.Row="3" Margin="5" IsChecked="{Binding GroupByProject}" />
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Filter" Width="100" Height="25" Grid.Row="0" Margin="5" Command="{Binding FilterCommand, Mode=OneWay}" />
+                    <Button Content="Clear filter" Width="100" Height="25" Grid.Row="1" Margin="5" Command="{Binding ClearFilterCommand, Mode=OneWay}" />
+                    <Button Content="Clear all" Width="100" Height="25" Grid.Row="2" Margin="5" Command="{Binding ClearAllCommand, Mode=OneWay}" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+
+        <DataGrid Grid.Row="1" Margin="5" ColumnWidth="Auto" ItemsSource="{Binding FilteredPassedTimes}" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander Margin="10,0,0,0" IsExpanded="True">
+                                            <Expander.Header>
+                                                <TextBlock>
+                                                    <TextBlock.Text>
+                                                        <MultiBinding StringFormat=" {0} : {1} items ({2})">
+                                                            <Binding Path="Name" />
+                                                            <Binding Path="ItemCount" />
+                                                            <Binding Converter="{StaticResource SumTimeConverter}" />
+                                                        </MultiBinding>
+                                                    </TextBlock.Text>
+                                                </TextBlock>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                    <GroupStyle.Panel>
+                        <ItemsPanelTemplate>
+                            <DataGridRowsPresenter />
+                        </ItemsPanelTemplate>
+                    </GroupStyle.Panel>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Project.Name}" Header="Project name" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding Project.Application.Name}" Header="Application name" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding Task.Name}" Header="Task name" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding Project.Application.Company.Name}" Header="Company name" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding Duration, Mode=OneWay}" Header="Duration" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding StartDateTimeString, Mode=OneWay}" Header="Start date" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding EndDateTimeString, Mode=OneWay}" Header="End date" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding Comment}" Header="Comment" Width="Auto" />
+                <DataGridTextColumn Binding="{Binding TargetDateTimeString}" Header="TargetDate" Visibility="Hidden" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GroupBox Header="Actions" Grid.Row="2" Margin="5" Visibility="Hidden">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Header="Options of the export" Grid.Column="0" Margin="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <GroupBox Header="Format" Grid.Column="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <RadioButton Content="Excel" IsChecked="{Binding IsExcelFormat}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Margin="5" />
+                                <RadioButton Content="CSV" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="5" IsChecked="{Binding IsCsvFormat}" />
+                            </Grid>
+                        </GroupBox>
+
+                        <GroupBox Header="Alignment" Grid.Column="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+
+                                <RadioButton Content="Time horizontal" IsChecked="{Binding IsHorizontalTime}" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Margin="5" />
+                                <RadioButton Content="Time vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Margin="5" IsChecked="{Binding IsVerticalTime}" />
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </GroupBox>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Button Content="Export" Height="25" Width="100" Grid.Row="0" Margin="5" Command="{Binding ExportCommand, Mode=OneWay}" />
+                    <Button Content="Clear export" Height="25" Width="100" Grid.Row="1" Margin="5" Command="{Binding ClearExportCommand, Mode=OneWay}" />
+                </Grid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

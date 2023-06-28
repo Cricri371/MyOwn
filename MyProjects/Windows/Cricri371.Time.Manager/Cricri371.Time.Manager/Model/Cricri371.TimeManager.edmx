@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Cricri371TimeManagerModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="Cricri371TimeManagerModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Cricri371TimeManagerModel.Store.Application" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Cricri371TimeManagerModel.Store.Company" store:Type="Tables" />
+          <EntitySet Name="PassedTime" EntityType="Cricri371TimeManagerModel.Store.PassedTime" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Cricri371TimeManagerModel.Store.Project" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Cricri371TimeManagerModel.Store.Task" store:Type="Tables" />
+          <EntitySet Name="TaskLinkedToProject" EntityType="Cricri371TimeManagerModel.Store.TaskLinkedToProject" store:Type="Tables" />
+          <AssociationSet Name="FK_Application_CompanyID" Association="Cricri371TimeManagerModel.Store.FK_Application_CompanyID">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassedTime_TaskLinkedToProjectID" Association="Cricri371TimeManagerModel.Store.FK_PassedTime_TaskLinkedToProjectID">
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+            <End Role="PassedTime" EntitySet="PassedTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ApplicationID" Association="Cricri371TimeManagerModel.Store.FK_Project_ApplicationID">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TLP_TaskID" Association="Cricri371TimeManagerModel.Store.FK_TLP_TaskID">
+            <End Role="Task" EntitySet="Task" />
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TLTP_ProjectID" Association="Cricri371TimeManagerModel.Store.FK_TLTP_ProjectID">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ID_Application" />
+          </Key>
+          <Property Name="ID_Application" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Company" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID_Company" />
+          </Key>
+          <Property Name="ID_Company" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PassedTime">
+          <Key>
+            <PropertyRef Name="ID_PassedTime" />
+          </Key>
+          <Property Name="ID_PassedTime" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" />
+          <Property Name="ID_TaskLinkedToProject" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ID_Project" />
+          </Key>
+          <Property Name="ID_Project" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+          <Property Name="ShortName" Type="nvarchar" Nullable="false" />
+          <Property Name="ID_Application" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="ID_Task" />
+          </Key>
+          <Property Name="ID_Task" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskLinkedToProject">
+          <Key>
+            <PropertyRef Name="ID_TaskLinkedToProject" />
+          </Key>
+          <Property Name="ID_Project" Type="int" Nullable="false" />
+          <Property Name="ID_Task" Type="int" Nullable="false" />
+          <Property Name="ID_TaskLinkedToProject" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <Association Name="FK_Application_CompanyID">
+          <End Role="Company" Type="Cricri371TimeManagerModel.Store.Company" Multiplicity="1" />
+          <End Role="Application" Type="Cricri371TimeManagerModel.Store.Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassedTime_TaskLinkedToProjectID">
+          <End Role="TaskLinkedToProject" Type="Cricri371TimeManagerModel.Store.TaskLinkedToProject" Multiplicity="1" />
+          <End Role="PassedTime" Type="Cricri371TimeManagerModel.Store.PassedTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_TaskLinkedToProject" />
+            </Principal>
+            <Dependent Role="PassedTime">
+              <PropertyRef Name="ID_TaskLinkedToProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ApplicationID">
+          <End Role="Application" Type="Cricri371TimeManagerModel.Store.Application" Multiplicity="1" />
+          <End Role="Project" Type="Cricri371TimeManagerModel.Store.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ID_Application" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ID_Application" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TLP_TaskID">
+          <End Role="Task" Type="Cricri371TimeManagerModel.Store.Task" Multiplicity="1" />
+          <End Role="TaskLinkedToProject" Type="Cricri371TimeManagerModel.Store.TaskLinkedToProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="ID_Task" />
+            </Principal>
+            <Dependent Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_Task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TLTP_ProjectID">
+          <End Role="Project" Type="Cricri371TimeManagerModel.Store.Project" Multiplicity="1" />
+          <End Role="TaskLinkedToProject" Type="Cricri371TimeManagerModel.Store.TaskLinkedToProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="ID_Project" />
+            </Principal>
+            <Dependent Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_Project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Cricri371TimeManagerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Cricri371TimeManagerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Application" EntityType="Cricri371TimeManagerModel.Applications" />
+          <EntitySet Name="Company" EntityType="Cricri371TimeManagerModel.Companies" />
+          <EntitySet Name="PassedTime" EntityType="Cricri371TimeManagerModel.PassedTimes" />
+          <EntitySet Name="Project" EntityType="Cricri371TimeManagerModel.Projects" />
+          <EntitySet Name="Task" EntityType="Cricri371TimeManagerModel.Tasks" />
+          <AssociationSet Name="FK_Application_CompanyID" Association="Cricri371TimeManagerModel.FK_Application_CompanyID">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Application" EntitySet="Application" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Project_ApplicationID" Association="Cricri371TimeManagerModel.FK_Project_ApplicationID">
+            <End Role="Application" EntitySet="Application" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+          <EntitySet Name="TaskLinkedToProject" EntityType="Cricri371TimeManagerModel.TaskLinkedToProject" />
+          <AssociationSet Name="FK_TLTP_ProjectID" Association="Cricri371TimeManagerModel.FK_TLTP_ProjectID">
+            <End Role="Projects" EntitySet="Project" />
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PassedTime_TaskLinkedToProjectID" Association="Cricri371TimeManagerModel.FK_PassedTime_TaskLinkedToProjectID">
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+            <End Role="PassedTimes" EntitySet="PassedTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TLP_TaskID" Association="Cricri371TimeManagerModel.FK_TLP_TaskID">
+            <End Role="Tasks" EntitySet="Task" />
+            <End Role="TaskLinkedToProject" EntitySet="TaskLinkedToProject" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Applications">
+          <Key>
+            <PropertyRef Name="ID_Application" />
+          </Key>
+          <Property Type="Int32" Name="ID_Application" Nullable="false" />
+          <Property Type="Int32" Name="ID_Company" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="Cricri371TimeManagerModel.FK_Application_CompanyID" FromRole="Application" ToRole="Company" />
+          <NavigationProperty Name="Project" Relationship="Cricri371TimeManagerModel.FK_Project_ApplicationID" FromRole="Application" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="ID_Company" />
+          </Key>
+          <Property Type="Int32" Name="ID_Company" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Application" Relationship="Cricri371TimeManagerModel.FK_Application_CompanyID" FromRole="Company" ToRole="Application" />
+        </EntityType>
+        <EntityType Name="PassedTimes">
+          <Key>
+            <PropertyRef Name="ID_PassedTime" />
+          </Key>
+          <Property Type="Int32" Name="ID_PassedTime" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="EndDateTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Comment" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID_TaskLinkedToProject" Nullable="false" />
+          <NavigationProperty Name="TaskLinkedToProject" Relationship="Cricri371TimeManagerModel.FK_PassedTime_TaskLinkedToProjectID" FromRole="PassedTimes" ToRole="TaskLinkedToProject" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="ID_Project" />
+          </Key>
+          <Property Type="Int32" Name="ID_Project" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortName" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID_Application" Nullable="false" />
+          <NavigationProperty Name="Application" Relationship="Cricri371TimeManagerModel.FK_Project_ApplicationID" FromRole="Project" ToRole="Application" />
+          <NavigationProperty Name="TaskLinkedToProject" Relationship="Cricri371TimeManagerModel.FK_TLTP_ProjectID" FromRole="Projects" ToRole="TaskLinkedToProject" />
+        </EntityType>
+        <EntityType Name="Tasks">
+          <Key>
+            <PropertyRef Name="ID_Task" />
+          </Key>
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ID_Task" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="TaskLinkedToProject" Relationship="Cricri371TimeManagerModel.FK_TLP_TaskID" FromRole="Tasks" ToRole="TaskLinkedToProject" />
+        </EntityType>
+        <Association Name="FK_Application_CompanyID">
+          <End Type="Cricri371TimeManagerModel.Companies" Role="Company" Multiplicity="1" />
+          <End Type="Cricri371TimeManagerModel.Applications" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="ID_Company" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="ID_Company" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Project_ApplicationID">
+          <End Type="Cricri371TimeManagerModel.Applications" Role="Application" Multiplicity="1" />
+          <End Type="Cricri371TimeManagerModel.Projects" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application">
+              <PropertyRef Name="ID_Application" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ID_Application" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TaskLinkedToProject">
+          <Key>
+            <PropertyRef Name="ID_TaskLinkedToProject" />
+          </Key>
+          <Property Type="Int32" Name="ID_Project" Nullable="false" />
+          <Property Type="Int32" Name="ID_Task" Nullable="false" />
+          <NavigationProperty Name="Project" Relationship="Cricri371TimeManagerModel.FK_TLTP_ProjectID" FromRole="TaskLinkedToProject" ToRole="Projects" />
+          <Property Type="Int32" Name="ID_TaskLinkedToProject" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="PassedTime" Relationship="Cricri371TimeManagerModel.FK_PassedTime_TaskLinkedToProjectID" FromRole="TaskLinkedToProject" ToRole="PassedTimes" />
+          <NavigationProperty Name="Task" Relationship="Cricri371TimeManagerModel.FK_TLP_TaskID" FromRole="TaskLinkedToProject" ToRole="Tasks" />
+        </EntityType>
+        <Association Name="FK_TLTP_ProjectID">
+          <End Type="Cricri371TimeManagerModel.Projects" Role="Projects" Multiplicity="1" />
+          <End Type="Cricri371TimeManagerModel.TaskLinkedToProject" Role="TaskLinkedToProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="ID_Project" />
+            </Principal>
+            <Dependent Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_Project" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PassedTime_TaskLinkedToProjectID">
+          <End Type="Cricri371TimeManagerModel.TaskLinkedToProject" Role="TaskLinkedToProject" Multiplicity="1" />
+          <End Type="Cricri371TimeManagerModel.PassedTimes" Role="PassedTimes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_TaskLinkedToProject" />
+            </Principal>
+            <Dependent Role="PassedTimes">
+              <PropertyRef Name="ID_TaskLinkedToProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TLP_TaskID">
+          <End Type="Cricri371TimeManagerModel.Tasks" Role="Tasks" Multiplicity="1" />
+          <End Type="Cricri371TimeManagerModel.TaskLinkedToProject" Role="TaskLinkedToProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tasks">
+              <PropertyRef Name="ID_Task" />
+            </Principal>
+            <Dependent Role="TaskLinkedToProject">
+              <PropertyRef Name="ID_Task" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Cricri371TimeManagerModelStoreContainer" CdmEntityContainer="Cricri371TimeManagerEntities">
+          <EntitySetMapping Name="Application">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.Applications">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+                <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.Companies">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Company" ColumnName="ID_Company" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PassedTime">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.PassedTimes">
+              <MappingFragment StoreEntitySet="PassedTime">
+                <ScalarProperty Name="ID_TaskLinkedToProject" ColumnName="ID_TaskLinkedToProject" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="ID_PassedTime" ColumnName="ID_PassedTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.Projects">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="ID_Application" ColumnName="ID_Application" />
+                <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.Tasks">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="ID_Task" ColumnName="ID_Task" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskLinkedToProject">
+            <EntityTypeMapping TypeName="Cricri371TimeManagerModel.TaskLinkedToProject">
+              <MappingFragment StoreEntitySet="TaskLinkedToProject">
+                <ScalarProperty Name="ID_TaskLinkedToProject" ColumnName="ID_TaskLinkedToProject" />
+                <ScalarProperty Name="ID_Task" ColumnName="ID_Task" />
+                <ScalarProperty Name="ID_Project" ColumnName="ID_Project" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Cricri371.Time.Manager">
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.Applications" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.Companies" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.PassedTimes" Width="1.5" PointX="11.25" PointY="0.875" />
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.Projects" Width="1.5" PointX="5.25" PointY="0.875" />
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.Tasks" Width="3.25" PointX="3.5" PointY="4" />
+        <AssociationConnector Association="Cricri371TimeManagerModel.FK_Application_CompanyID" />
+        <AssociationConnector Association="Cricri371TimeManagerModel.FK_Project_ApplicationID" />
+        <EntityTypeShape EntityType="Cricri371TimeManagerModel.TaskLinkedToProject" Width="3" PointX="7.5" PointY="0.875" />
+        <AssociationConnector Association="Cricri371TimeManagerModel.FK_TLTP_ProjectID" />
+        <AssociationConnector Association="Cricri371TimeManagerModel.FK_PassedTime_TaskLinkedToProjectID" />
+        <AssociationConnector Association="Cricri371TimeManagerModel.FK_TLP_TaskID" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

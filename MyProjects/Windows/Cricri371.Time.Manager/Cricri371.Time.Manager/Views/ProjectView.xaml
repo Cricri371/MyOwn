@@ -1,0 +1,89 @@
+﻿<Window x:Name="window" x:Class="Cricri371.Time.Manager.Views.ProjectView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:Cricri371.Framework.UI.Wpf.UserControls;assembly=Cricri371.Framework.UI"
+        mc:Ignorable="d"
+        DataContext="{Binding ProjectViewModel, Source={StaticResource Locator}}" Title="Manage projects" Width="805" Height="405" MinWidth="805" MinHeight="405" ShowInTaskbar="False" Closing="Window_Closing" PreviewKeyDown="Window_PreviewKeyDown">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Projects" Margin="5,2" Grid.Row="0" Grid.Column="0">
+            <ListView Name="lVProjects" ItemsSource="{Binding CommonViewModel.ProjectList, Source={StaticResource Locator}}" SelectedIndex="{Binding SelectedProjectIndex}" SelectedItem="{Binding SelectedProject}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Application name" DisplayMemberBinding="{Binding Application.Name}" Width="Auto" />
+                        <GridViewColumn Header="Short project name" DisplayMemberBinding="{Binding ShortName}" Width="Auto" />
+                        <GridViewColumn Header="Project name" DisplayMemberBinding="{Binding Name}" Width="Auto" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </GroupBox>
+
+        <GroupBox Header="Tasks" Grid.Row="0" Margin="0,2,5,2" Grid.Column="1" Grid.RowSpan="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Button Content="Manage the tasks" Margin="5" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Command="{Binding OpenTaskViewCommand, Mode=OneWay}" />
+
+                <GroupBox Header="Existing tasks" Grid.Row="1" Grid.Column="0">
+                    <ListBox ItemsSource="{Binding CommonViewModel.TaskList, Source={StaticResource Locator}}" SelectedItem="{Binding TaskAddToProject}" DisplayMemberPath="Name" />
+                </GroupBox>
+
+                <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                    <Button Content="=&gt;" Margin="5" Command="{Binding AddTaskToProjectCommand, Mode=OneWay}" />
+                    <Button Content="&lt;=" Margin="5" Command="{Binding RemoveTaskFromProjectCommand, Mode=OneWay}" />
+                </StackPanel>
+
+                <GroupBox Header="Tasks for the project" Grid.Row="1" Grid.Column="2">
+                    <ListBox ItemsSource="{Binding ProjectToUse.Tasks}" SelectedItem="{Binding TaskRemoveFromProject}" DisplayMemberPath="Name" />
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Details" Margin="5,2" Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Application : " Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Text="Project Name : " Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Text="Short project name : " Grid.Column="0" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                <ComboBox Grid.Row="0" Grid.Column="1" Margin="5" VerticalAlignment="Center" DisplayMemberPath="Name" ItemsSource="{Binding Source={StaticResource Locator}, Path=CommonViewModel.ApplicationList}" SelectedItem="{Binding Path=ProjectToUse.Application}" SelectedIndex="{Binding Path=SelectedApplicationIndex}" TabIndex="0" Text="{Binding Path=ProjectToUse.Application.Name}" />
+                <Button  Grid.Row="0" Grid.Column="2" Margin="5" Content="Manage" VerticalAlignment="Center" HorizontalAlignment="Center" TabIndex="1" Command="{Binding Path=ManageApplicationCommand}" />
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Path=ProjectToUse.Name}" TabIndex="2" />
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Grid.ColumnSpan="2" VerticalAlignment="Center" Text="{Binding Path=ProjectToUse.ShortName}" TabIndex="3" />
+            </Grid>
+        </GroupBox>
+
+        <uc:ActionsUC Grid.Row="2" NewCommand="{Binding Path=NewProjectCommand}" AddCommand="{Binding Path=AddProjectCommand}" DeleteCommand="{Binding Path=DeleteProjectCommand}" ModifyCommand="{Binding Path=ModifyProjectCommand}" />
+    </Grid>
+</Window>

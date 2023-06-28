@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+# SharpDevelop 2.1.0.2069
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cricri371MotCodé", "Cricri371MotCodé.csproj", "{2053A599-5313-42EA-B7A7-30E4D9748C62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2053A599-5313-42EA-B7A7-30E4D9748C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2053A599-5313-42EA-B7A7-30E4D9748C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2053A599-5313-42EA-B7A7-30E4D9748C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2053A599-5313-42EA-B7A7-30E4D9748C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67FCC3B3-6DC0-45EB-9BB0-234FACFA487B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67FCC3B3-6DC0-45EB-9BB0-234FACFA487B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67FCC3B3-6DC0-45EB-9BB0-234FACFA487B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67FCC3B3-6DC0-45EB-9BB0-234FACFA487B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+EndGlobal
