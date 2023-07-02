@@ -1,8 +1,23 @@
 ﻿<Properties StartupConfiguration="{CB229CD5-26A3-45F2-B7E9-AFE826D28874}|Default">
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cricri371.Time.Manager/Platforms/Windows/Package.appxmanifest">
+    <Files>
+      <File FileName="Cricri371.Time.Manager/MainPage.xaml" />
+      <File FileName="Cricri371.Time.Manager/App.xaml" />
+      <File FileName="Cricri371.Time.Manager/Platforms/Windows/App.xaml" />
+      <File FileName="Cricri371.Time.Manager/Platforms/Windows/app.manifest" />
+      <File FileName="Cricri371.Time.Manager/Platforms/Windows/Package.appxmanifest" Line="1" Column="1" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
-        <State name="__root__" />
+        <State name="__root__">
+          <Node name="Cricri371.Time">
+            <Node name="Cricri371.Time.Manager" expanded="True">
+              <Node name="Model" expanded="True">
+                <Node name="data.sqlite" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>

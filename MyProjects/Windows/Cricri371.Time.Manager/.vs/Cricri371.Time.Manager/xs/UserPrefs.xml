@@ -1,0 +1,33 @@
+﻿<Properties>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Cricri371.Time.Manager/Views/HistoryView.xaml">
+    <Files>
+      <File FileName="Cricri371.Time.Manager/Model/Cricri371.TimeManager.edmx" Line="1" Column="1" IsPinned="True" />
+      <File FileName="Cricri371.Time.Manager/Views/ConfigurationView.xaml" IsPinned="True" />
+      <File FileName="Cricri371.Time.Manager/Views/ApplicationView.xaml" />
+      <File FileName="Cricri371.Time.Manager/Views/CompanyView.xaml" />
+      <File FileName="Cricri371.Time.Manager/Views/ProjectView.xaml" />
+      <File FileName="Cricri371.Time.Manager/Views/HistoryView.xaml" Line="171" Column="30" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Cricri371.Time.Manager" expanded="True">
+            <Node name="Cricri371.Time.Manager" expanded="True">
+              <Node name="Model" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="HistoryView.xaml" selected="True" />
+              </Node>
+              <Node name="MainWindow.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+</Properties>
